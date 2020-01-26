@@ -62,8 +62,6 @@ namespace DesignPatterns
 
             if (Type == "class")
                 sb.AppendFormat("{0}{1}", new string(' ', (indent * indentSize)), "}");
-            //else
-            //    sb.Append(";");
             return sb.ToString();
         }
     }
