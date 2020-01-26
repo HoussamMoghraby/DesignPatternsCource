@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Practices\Builder-Recursive-Inheritance.cs" />
+    <Compile Remove="Practices\Builder.cs" />
+    <Compile Remove="Resources\Creational.Builder.Builder.cs" />
+    <Compile Remove="Resources\Creational.Builder.BuilderInheritance.cs" />
+    <Compile Remove="Resources\Creational.Builder.FunctionalBuilder.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Practices\BuilderExercice-Answers.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Practices\Builder-Recursive-Inheritance.cs" />
+    <None Include="Practices\Builder.cs" />
+    <None Include="Resources\Creational.Builder.Builder.cs" />
+    <None Include="Resources\Creational.Builder.BuilderInheritance.cs" />
+    <None Include="Resources\Creational.Builder.FunctionalBuilder.cs" />
+  </ItemGroup>
+
+</Project>

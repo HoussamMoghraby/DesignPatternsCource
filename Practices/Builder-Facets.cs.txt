@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+
+namespace DesignPatterns
+{
+    //Functional Builders using extension methods
+
+    public class Product
+    {
+        public string Name { get; set; }
+        public Decimal Price { get; set; }
+
+        public List<string> Recipes = new List<string>();
+
+        public override string ToString()
+        {
+            return $"{nameof(Name)}:{Name}, {nameof(Price)}: {Price} \n{nameof(Recipes)}: {string.Join(',', Recipes)}";
+        }
+    }
+
+    public class ProductBuilder //Façade
+    {
+        public Product Product = new Product();
+
+        public ProductInfoBuilder Info => new ProductInfoBuilder(Product);
+        public ProductRecipeBuilder Recipes { get { return new ProductRecipeBuilder(Product); } }
+
+        public Product Build()
+        {
+            return this.Product;
+        }
+    }
+
+
+    public class ProductInfoBuilder : ProductBuilder
+    {
+        public ProductInfoBuilder(Product product)
+        {
+            this.Product = product;
+        }
+
+        public ProductInfoBuilder Setup(string name, int price)
+        {
+            this.Product.Name = name;
+            this.Product.Price = price;
+            return this;
+        }
+    }
+    public class ProductRecipeBuilder : ProductBuilder
+    {
+        public ProductRecipeBuilder(Product product)
+        {
+            this.Product = product;
+        }
+        public ProductRecipeBuilder Add(string recipe)
+        {
+            Product.Recipes.Add(recipe);
+            return this;
+        }
+    }
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+
+            var pb = new ProductBuilder();
+            Product product = pb
+                .Info
+                    .Setup("Salad Verde", 123)
+                .Recipes
+                    .Add("Small")
+                    .Add("Large")
+                .Build();
+            Console.Write(product.ToString());
+            Console.ReadLine();
+        }
+    }
+}
